@@ -3,15 +3,17 @@ from PIL import ImageTk, Image
 import os
 import xlrd
 import openpyxl
+cwd = os.getcwd()
+
 
 root = Tk()
-img = ImageTk.PhotoImage(Image.open("C:/Users/chethan.R/PycharmProjects/student_database/std_data/person-984236_960_720.jpg"))
+img = ImageTk.PhotoImage(Image.open(os.getcwd().replace("\\", "/")+"/"+"person-984236_960_720.jpg"))
 panel = Label(root, image = img)
 panel.grid(row=1,column=1)
 def get_data():
     def farecal():
         e1 = l1.get()
-        excel_file = 'C:/Users/chethan.R/PycharmProjects/student_database/excel_data/id.xlsx'
+        excel_file = os.getcwd().replace("\\", "/")+"/"+"/"+"id.xlsx"
 
         wb = xlrd.open_workbook(excel_file)
         sheet = wb.sheet_by_index(0)
@@ -80,7 +82,7 @@ def add_data():
         l4 = e4.get()
         l5 = e5.get()
         l6 = e6.get()
-        wb = openpyxl.load_workbook(filename='C:/Users/chethan.R/PycharmProjects/student_database/excel_data/id.xlsx')
+        wb = openpyxl.load_workbook(filename=os.getcwd().replace("\\", "/")+"/"+"/"+"id.xlsx")
         ws = wb.worksheets[0]
         c = [l3,l4,l5,l6]
         row_count = ws.max_row + 1
@@ -90,7 +92,7 @@ def add_data():
 
             column_count = ws.max_column
             ws.cell(row_count, column=i + 1).value = c[i]
-            wb.save("C:/Users/chethan.R/PycharmProjects/student_database/excel_data/id.xlsx")
+            wb.save(os.getcwd().replace("\\", "/")+"/"+"/"+"id.xlsx")
 
     root = Tk()
     root.title("")
